@@ -3,7 +3,7 @@ Contributors: buddyboss
 Tags: buddypress, social networking, activity, profiles, messaging, friends, groups, forums, notifications, settings, social, community, networks, networking
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,7 @@ BuddyPress Edit Activity allows your members to edit their activity posts on the
 
 == Description ==
 
-Let your members edit their activity posts and replies on the front-end of the site. You can even set a time limit for how long activity posts should remain editable.
+Let your BuddyPress members edit their activity posts and replies on the front-end of the site. You can even set a time limit for how long activity posts should remain editable.
 
 Just activate the plugin, and every activity post and reply will become editable, styled automatically by BuddyPress to fit with your theme.
 
@@ -54,10 +54,13 @@ For BuddyPress customizations, submit your request at [BuddyBoss](http://www.bud
 
 == Screenshots ==
 
-1. **Editing Post** - Editing an activity post from the front-end
-2. **Admin** - Configuting plugin options
+1. **Post Editing** - Editing an activity post from the front-end
+2. **Admin** - Configuring plugin options
 
 == Changelog ==
+
+= 1.0.1 =
+* Updated documentation
 
 = 1.0.0 =
 * Initial public release

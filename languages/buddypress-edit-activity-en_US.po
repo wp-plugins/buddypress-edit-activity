@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: BuddyPress Edit Activity v1.0.0\n"
+"Project-Id-Version: BuddyPress Edit Activity v1.0.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-01-13 19:10-0600\n"
+"PO-Revision-Date: 2015-01-22 17:41-0500\n"
 "Last-Translator: BuddyBoss <support@buddyboss.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,54 +30,54 @@ msgid "<h1>Fatal error:</h1><hr/><pre>%s</pre>"
 msgstr ""
 
 # @ default
-#: includes/admin.php:136
+#: includes/admin.php:137
 msgid "Save Changes"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:163
+#: includes/admin.php:167
 msgid "Admin only"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:164
+#: includes/admin.php:168
 msgid "Admin and user who created the post"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:182
+#: includes/admin.php:186
 msgid "Activity Posts"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:183
+#: includes/admin.php:187
 msgid "Activity Replies"
 msgstr ""
 
 # @ buddyboss-media
-#: includes/main-class.php:78 includes/main-class.php:80
+#: includes/main-class.php:79 includes/main-class.php:81
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 # @ buddypress-edit-activity
 # @ buddyboss-edit-activity
-#: includes/main-class.php:191 includes/main-class.php:243
-#: includes/main-class.php:255
+#: includes/main-class.php:192 includes/main-class.php:244
+#: includes/main-class.php:256
 msgid "Edit"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/main-class.php:192
+#: includes/main-class.php:193
 msgid "Save"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/main-class.php:326
+#: includes/main-class.php:328
 msgid "Nothing found!"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/main-class.php:362
+#: includes/main-class.php:364
 msgid "Error!"
 msgstr ""
 
@@ -102,26 +102,31 @@ msgid "Disallow editing after"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:127
+#: includes/admin.php:128
 msgid "Buddypress Edit Activity"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:129
+#: includes/admin.php:130
 msgid "Need BuddyPress customizations?"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:129
+#: includes/admin.php:130
 msgid "Say hello."
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:198
+#: includes/admin.php:202
 msgid " minutes"
 msgstr ""
 
 # @ buddypress-edit-activity
-#: includes/admin.php:199
+#: includes/admin.php:203
 msgid "Leave at 0 to set no time limit "
+msgstr ""
+
+# @ buddypress-edit-activity
+#: includes/admin.php:212
+msgid "Exclude admins from time limit."
 msgstr ""

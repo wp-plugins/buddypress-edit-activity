@@ -95,6 +95,7 @@ class BuddyBoss_Edit_Activity_Admin{
 		add_settings_field( 'user_access', __( 'Who can edit activity', 'buddypress-edit-activity' ), array( $this, 'setting_user_access' ), __FILE__, 'general_section');
 		add_settings_field( 'editable_types', __( 'Editable on front-end', 'buddypress-edit-activity' ), array( $this, 'setting_editable_types' ), __FILE__, 'general_section');
 		add_settings_field( 'editable_timeout', __( 'Disallow editing after', 'buddypress-edit-activity' ), array( $this, 'setting_editable_timeout' ), __FILE__, 'general_section');
+		add_settings_field( 'exclude_admins', '', array( $this, 'setting_exclude_admins' ), __FILE__, 'general_section');
 	}
 	
 	/**
@@ -146,6 +147,9 @@ class BuddyBoss_Edit_Activity_Admin{
 	public function plugin_options_validate( $input ){
 		$editable_timeout = (int)sanitize_text_field( $input['editable_timeout'] );
 		$input['editable_timeout'] = $editable_timeout;
+		
+		if( !isset( $input['exclude_admins'] ) || !$input['exclude_admins'] )
+			$input['exclude_admins'] = 'no';
 
 		return $input; // return validated input
 	}
@@ -197,6 +201,15 @@ class BuddyBoss_Edit_Activity_Admin{
 		echo "<input id='editable_timeout' name='b_e_a_plugin_options[editable_timeout]' type='text' class='small-text' value='" . esc_attr( $editable_timeout ) . "' />";
 		echo '<label for="b_e_a_plugin_options[editable_timeout]">' . __( ' minutes', 'buddypress-edit-activity' ) . '</label>';
 		echo '<p class="description">' . __( 'Leave at 0 to set no time limit ', 'buddypress-edit-activity' ) . '</p>';
+	}
+	
+	/**
+	 * Setting > exclude_admins
+	 */
+	public function setting_exclude_admins(){
+		$exclude_admins = $this->option( 'exclude_admins' );
+		$checked = $exclude_admins=='yes' ? ' checked' : '';
+		echo '<label><input type="checkbox" name="b_e_a_plugin_options[exclude_admins]" value="yes" '. $checked . '>' . __( 'Exclude admins from time limit.', 'buddypress-edit-activity' ) . '</label>';
 	}
 }
 

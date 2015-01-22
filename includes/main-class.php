@@ -28,6 +28,7 @@ class BuddyBoss_Edit_Activity {
 		'user_access'		=> 'author',//whether only admin can edit an activity or the activity's original author as well
 		'editable_types'	=> array( 'activity_comment', 'activity_update' ),//what can be edited
 		'editable_timeout'	=> false,//how long after posting, the activity is editable? always editable by default
+		'exclude_admins'	=> 'yes',//whether admins are excluded from timeout limitation and can always edit activity.
 	);
 	
 	/**
@@ -302,8 +303,9 @@ class BuddyBoss_Edit_Activity {
 		
 		/**
 		 * is a timeout defined and has the current activity passed the timeout?
+		 * Timeout is not applicable for admins by default ( unless overridden in settings)
 		 */
-		if( $can_edit===true ){
+		if( $can_edit===true && ( !current_user_can( 'level_10' ) || $this->option( 'exclude_admins' ) != 'yes' ) ){
 			if( ( $timeout = (int)$this->option( 'editable_timeout' ) ) != 0 ){
 				$activity_time = strtotime( $activity->date_recorded );
 				$current_time = time();

@@ -1,9 +1,10 @@
 === BuddyPress Edit Activity ===
 Contributors: buddyboss
+Donate link: http://www.buddyboss.com/donate/
 Tags: buddypress, social networking, activity, profiles, messaging, friends, groups, forums, notifications, settings, social, community, networks, networking
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -58,6 +59,10 @@ For BuddyPress customizations, submit your request at [BuddyBoss](http://www.bud
 2. **Admin** - Configuring plugin options
 
 == Changelog ==
+
+= 1.0.3 =
+* Remove wrapping <p> tag in edit activity content
+* Added Persian translation files - credits to Mahdiar Amani
 
 = 1.0.2 =
 * Added Settings option: "Exclude admins from time limit."

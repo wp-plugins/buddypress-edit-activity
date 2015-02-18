@@ -173,8 +173,8 @@ class BuddyBoss_Edit_Activity {
 	
 	public function assets(){
 		$assets_url = trailingslashit( BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_URL ) . 'assets/';
-		//wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.js', array('jquery'), '1.0.0', true );
-		wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.min.js', array('jquery'), '1.0.0', true );
+		//wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.js', array('jquery'), '1.0.3', true );
+		wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.min.js', array('jquery'), '1.0.3', true );
 
 		add_action('wp_head', 'b_e_a_inline_styles');
 		function b_e_a_inline_styles() {
@@ -354,6 +354,13 @@ class BuddyBoss_Edit_Activity {
 		
 		//convert @mention anchor tags into plain text
 		$content = $this->strip_mention_tags( $content );
+		
+		//remove surrounding <p> tags
+		if( strpos( $content, "<p>", 0 ) === 0 ){
+			$content = ltrim( $content, '<p>' );
+			$content = rtrim( $content, '</p>' );
+		}
+		
 		return $content;
 	}
 	

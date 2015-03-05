@@ -40,6 +40,13 @@ class BuddyBoss_Edit_Activity {
 	public $options = array();
 	
 	/**
+	 * Whether the plugin is activated network wide.
+	 * 
+	 * @var boolean 
+	 */
+	public $network_activated = false;
+	
+	/**
 	 * Main BuddyBoss Edit Activity Instance.
 	 *
 	 * Insures that only one instance of this class exists in memory at any
@@ -97,13 +104,36 @@ class BuddyBoss_Edit_Activity {
 	 * @access private
 	 */
 	private function setup_globals(){
+		$this->network_activated = $this->is_network_activated();
+		
 		// DEFAULT CONFIGURATION OPTIONS
 		$default_options = $this->default_options;
 
-		$saved_options = get_option( 'b_e_a_plugin_options' );
+		$saved_options = $this->network_activated ?  get_site_option( 'b_e_a_plugin_options' ) : get_option( 'b_e_a_plugin_options' );
 		$saved_options = maybe_unserialize( $saved_options );
 
 		$this->options = wp_parse_args( $saved_options, $default_options );
+	}
+	
+	/**
+	 * Check if the plugin is activated network wide(in multisite)
+	 * 
+	 * @since BuddyBoss Edit Activity (1.1.0)
+	 * @access private
+	 * 
+	 * @return boolean
+	 */
+	private function is_network_activated(){
+		$network_activated = false;
+		if ( is_multisite() ) {
+			if ( ! function_exists( 'is_plugin_active_for_network' ) )
+				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
+			if( is_plugin_active_for_network( 'buddypress-edit-activity/buddypress-edit-activity.php' ) ){
+				$network_activated = true;
+			}
+		}
+		return $network_activated;
 	}
 	
 	private function setup_actions(){
@@ -112,7 +142,7 @@ class BuddyBoss_Edit_Activity {
 		}
 		
 		// Hook into BuddyPress init
-		add_action( 'bp_loaded', array( $this, 'bp_loaded' ) );
+		add_action( 'bp_init', array( $this, 'bp_loaded' ) );
 	}
 	
 	/**
@@ -173,8 +203,8 @@ class BuddyBoss_Edit_Activity {
 	
 	public function assets(){
 		$assets_url = trailingslashit( BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_URL ) . 'assets/';
-		//wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.js', array('jquery'), '1.0.3', true );
-		wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.min.js', array('jquery'), '1.0.3', true );
+		//wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.js', array('jquery'), '1.0.4', true );
+		wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.min.js', array('jquery'), '1.0.4', true );
 
 		add_action('wp_head', 'b_e_a_inline_styles');
 		function b_e_a_inline_styles() {
@@ -191,6 +221,7 @@ class BuddyBoss_Edit_Activity {
 			'button_text'		=> array(
 				'edit'			=> __( 'Edit', 'buddypress-edit-activity' ),
 				'save'			=> __( 'Save', 'buddypress-edit-activity' ),
+				'cancel'		=> __( 'Cancel', 'buddypress-edit-activity' ),
 			),
 		);
 		
@@ -356,9 +387,11 @@ class BuddyBoss_Edit_Activity {
 		$content = $this->strip_mention_tags( $content );
 		
 		//remove surrounding <p> tags
-		if( strpos( $content, "<p>", 0 ) === 0 ){
-			$content = ltrim( $content, '<p>' );
-			$content = rtrim( $content, '</p>' );
+		if( substr( $content, 0, strlen( "<p>" ) ) == "<p>" ){
+			$content = substr( $content, strlen( "<p>" ) );
+		} 
+		if( substr( $content,-strlen( "</p>" ) )=== "</p>" ){
+			$content = substr( $content, 0, strlen( $content )-strlen( "</p>" ) );
 		}
 		
 		return $content;
@@ -452,10 +485,14 @@ class BuddyBoss_Edit_Activity {
 				}
 				$i--;
 			}
-		}
+		
+			$new_content = utf8_decode( $dom->saveHTML( $dom->documentElement ) );
+			$html_fragment = preg_replace( '/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $new_content ));
 
-		$html_fragment = preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $dom->saveHTML()));
-		return trim( $html_fragment );
+			return trim( $html_fragment );
+		} else {
+			return $content;
+		}
 	}
 }
 

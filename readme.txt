@@ -4,7 +4,7 @@ Donate link: http://www.buddyboss.com/donate/
 Tags: buddypress, social networking, activity, profiles, messaging, friends, groups, forums, notifications, settings, social, community, networks, networking
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -59,6 +59,12 @@ For BuddyPress customizations, submit your request at [BuddyBoss](http://www.bud
 2. **Admin** - Configuring plugin options
 
 == Changelog ==
+
+= 1.0.5 =
+* Added French translation files - credits to Jean-Pierre Michaud
+* Added Italian translation files - credits to Massimiliano Napoli
+* Fixed translation string for "Edit" text
+* Added 100% width for edit textarea
 
 = 1.0.4 =
 * Multisite compatibility, no longer requires network activation

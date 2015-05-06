@@ -203,8 +203,8 @@ class BuddyBoss_Edit_Activity {
 	
 	public function assets(){
 		$assets_url = trailingslashit( BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_URL ) . 'assets/';
-		//wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.js', array('jquery'), '1.0.4', true );
-		wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.min.js', array('jquery'), '1.0.4', true );
+		//wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.js', array('jquery'), '1.0.5', true );
+		wp_enqueue_script( 'buddyboss-edit-activity', $assets_url . 'js/buddypress-edit-activity.min.js', array('jquery'), '1.0.5', true );
 
 		add_action('wp_head', 'b_e_a_inline_styles');
 		function b_e_a_inline_styles() {
@@ -226,6 +226,10 @@ class BuddyBoss_Edit_Activity {
 		);
 		
 		wp_localize_script( 'buddyboss-edit-activity', 'B_E_A_', $data );
+		
+		// Style added temporarily, may need to add a separate CSS file in the future
+		?><style>#frm_buddypress-edit-activity textarea { width: 100%; }</style><?php
+		
 	}
 	
 	/**
@@ -272,7 +276,7 @@ class BuddyBoss_Edit_Activity {
 		if( $this->can_edit_activity() ){
 			?>
 			<a href="#" class="button bp-secondary-action buddyboss_edit_activity" onclick="return buddypress_edit_activity_initiate(this);" data-activity_id="<?php bp_activity_id() ;?>">
-				<?php _e( 'Edit', 'buddyboss-edit-activity' ); ?>
+				<?php _e( 'Edit', 'buddypress-edit-activity' ); ?>
 			</a>
 			<?php 
 		}
@@ -284,7 +288,7 @@ class BuddyBoss_Edit_Activity {
 		if( $this->can_edit_activity( $activity ) ){
 			?>
 			<a href="#" class="bp-secondary-action buddyboss_edit_activity_comment" onclick="return buddypress_edit_activity_initiate(this);" data-activity_id="<?php echo $activity->id;?>">
-				<?php _e( 'Edit', 'buddyboss-edit-activity' ); ?>
+				<?php _e( 'Edit', 'buddypress-edit-activity' ); ?>
 			</a>
 			<?php 
 		}

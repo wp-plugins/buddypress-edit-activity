@@ -5,7 +5,7 @@
  * Description: Edit BuddyPress activity posts from the front-end
  * Author:      BuddyBoss
  * Author URI:  http://buddyboss.com
- * Version:     1.0.4
+ * Version:     1.0.5
  */
 // Exit if accessed directly
 if (!defined('ABSPATH'))
@@ -18,12 +18,12 @@ if (!defined('ABSPATH'))
  */
 // Codebase version
 if (!defined( 'BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_VERSION' ) ) {
-  define( 'BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_VERSION', '1.0.4' );
+  define( 'BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_VERSION', '1.0.5' );
 }
 
 // Database version
 if (!defined( 'BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_DB_VERSION' ) ) {
-  define( 'BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_DB_VERSION', 2 );
+  define( 'BUDDYBOSS_EDIT_ACTIVITY_PLUGIN_DB_VERSION', 1 );
 }
 
 // Directory
